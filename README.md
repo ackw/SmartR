@@ -1,2 +1,2 @@
 # Bugbusters
-Attendance tracking implemented with face recognition
+SmartR, Attendance tracking implemented with face recognition
