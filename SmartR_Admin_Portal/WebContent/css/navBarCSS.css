@@ -1,0 +1,73 @@
+.navLogo {
+	width: 95px;
+	display: block;
+  	margin-left: auto;
+  	margin-right: auto;
+}
+
+.icon {
+  height: 60px;
+  width: 60px;
+}
+
+nav {
+	height: 100%;
+	width: 100px;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #203864;
+	overflow-x: hidden;
+	padding-top: 20px;
+}
+
+nav ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav ul li a {
+	display: block;
+	padding: 10px;
+	color: #fff;
+	text-decoration: none;
+	-webkit-transition: 0.2s linear;
+	-moz-transition: 0.2s linear;
+	-ms-transition: 0.2s linear;
+	-o-transition: 0.2s linear;
+	transition: 0.2s linear;
+	display: inline-block;
+   	text-align:center; 
+}
+
+nav ul li a:hover {
+	background: #4472c4;
+	color: #fff;
+}
+
+nav ul li a .fa {
+	width: 16px;
+	text-align: center;
+	margin-right: 5px;
+	float: right;
+}
+
+nav ul ul {
+	background: rgba(0, 0, 0, 0.2);
+}
+
+nav ul li ul li a {
+	border-left: 4px solid transparent;
+	padding: 10px 20px;
+}
+
+nav ul li ul li a:hover {
+	border-left: 4px solid #3498db;
+}
+
+.logoutLblPos{
+   margin-top: 40px;
+   margin-right: 20px;
+}

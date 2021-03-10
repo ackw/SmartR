@@ -1,0 +1,100 @@
+body {
+	font-family: "Karla", sans-serif;
+	min-height: 100vh;
+}
+
+th {
+	background-color: #203864;
+	color: white;
+}
+
+.form-control {
+	border: 1px solid #d5dae2;
+	margin-bottom: 20px;
+	min-height: 45px;
+	font-size: 13px;
+	line-height: 20;
+	font-weight: normal;
+}
+
+.btn.filter-btn {
+	padding: 13px 20px 12px;
+	background-color: #4472c4;
+	border-radius: 4px;
+	font-size: 17px;
+	font-weight: bold;
+	line-height: 20px;
+	color: #fff;
+	float: right;
+}
+
+.btn.filter-btn:hover {
+	border: 1px solid #000;
+	background-color: transparent;
+	color: #000;
+}
+
+.form-control::-webkit-input-placeholder {
+	color: #919aa3;
+}
+
+.form-control::-moz-placeholder {
+	color: #919aa3;
+}
+
+.form-control:-ms-input-placeholder {
+	color: #919aa3;
+}
+
+.form-control::-ms-input-placeholder {
+	color: #919aa3;
+}
+
+.form-control::placeholder {
+	color: #919aa3;
+}
+
+.divider {
+	background-color: #e9ecef;
+	border: 1px solid #ced4da;
+	height: 45px;
+	line-height: 1.5;
+	color: #495057;
+	text-align: center;
+	align-items: center;
+	padding: .65rem .75rem;
+}
+
+.input-group {
+	padding-bottom: 20px;
+}
+
+#title {
+	padding: 35px;
+	color: #4472c4;
+	text-align: center;
+}
+
+.late {
+	background-color: #DC143C;
+	color: #FFF;
+}
+
+.bootstrap-select .btn {
+	background-color: white;
+	border: 1px solid #d5dae2;
+	font-weight: normal;
+	color: black;
+	padding: 10px 10px;
+	font-size: 15px;
+}
+
+.bootstrap-select {
+  width: 100% !important;
+}
+
+.btn-primary-outline {
+  background-color: transparent;
+  border-color: #ccc;
+}
+
