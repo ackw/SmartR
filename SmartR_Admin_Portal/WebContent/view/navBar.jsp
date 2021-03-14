@@ -9,14 +9,14 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
-<body>
+<body>					
 	<nav>
 		<img class="navLogo" src="images/Logo1.png"/>
 		<ul>
-			<li><a href="attendancePage.jsp"> <img class="icon" src="images/ViewAttendanceIcon.png"/><span><br>View Attendance</span></a></li>
-			<li><a href="leavesPage.jsp"> <img class="icon" src="images/InputLeavesIcon.png"/><span><br>Input Leaves</span></a></li>
-			<li><a href="addEDetailsPage.jsp"> <img class="icon" src="images/AddNewEmployeeIcon.png"/><span><br>Add New Employee Details</span></a></li>
-			<li><a href="configurationPage.jsp"> <img class="icon" src="images/EditConfigIcon.png"/><span><br>Edit Settings</span></a></li>
+			<li><a href="AttendancePage"> <img class="icon" src="images/ViewAttendanceIcon.png"/><span><br>View Attendance</span></a></li>
+			<li><a href="LeavesPageServlet"> <img class="icon" src="images/InputLeavesIcon.png"/><span><br>Input Leaves</span></a></li>
+			<li><a href="AddEDetailsPageServlet"> <img class="icon" src="images/AddNewEmployeeIcon.png"/><span><br>Add New Employee Details</span></a></li>
+			<li><a href="ConfigurationPageServlet"> <img class="icon" src="images/EditConfigIcon.png"/><span><br>Edit Settings</span></a></li>
 		</ul>
 	</nav>
 	

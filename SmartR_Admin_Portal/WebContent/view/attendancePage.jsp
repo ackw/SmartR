@@ -35,6 +35,7 @@
 </head>
 <body>
 	<jsp:include page="navBar.jsp" />
+	
 	<div class="container">
 		<h1 id="title">Attendance List</h1>
 
@@ -77,6 +78,7 @@
 				</div>
 			</div>
 		</form>
+		<hr class="mt-3 mb-5" width="100%" color="white" size="10"> 
 		<table id="attendanceList" class="table table-striped table-bordered"
 			style="width: 100%">
 			<thead>
@@ -104,40 +106,37 @@
 						<td style="display: none;">${allAttendanceList[status.index].isIs_late()}</td>
 						<td>
 							<div class="dropdown">
-								<button class="btn btn-primary-outline dropdown-toggle"
+								<button class="buttom-custom dropdown-toggle"
 									type="button" data-toggle="dropdown">
 									Actions <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu">
 									<li class="dropdown-item"><a href="#" data-toggle="modal"
-										data-target="#exampleModal">View Reason</a></li>
+										data-target="#viewReasonModal">View Reason</a></li>
 									<li class="dropdown-item"><a href="#">Edit Row</a></li>
 								</ul>
 							</div>
 
-							<div class="modal fade" id="exampleModal" tabindex="-1"
-								role="dialog" aria-labelledby="exampleModalLabel"
+							<div class="modal fade" id="viewReasonModal" tabindex="-1"
+								role="dialog" aria-labelledby="viewReasonModal"
 								aria-hidden="true">
 								<div class="modal-dialog" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Modal
-												title</h5>
+											<h5 class="modal-title" id="exampleModalLabel">Absence Reason</h5>
 											<button type="button" class="close" data-dismiss="modal"
 												aria-label="Close">
 												<span aria-hidden="true">&times;</span>
 											</button>
 										</div>
-										<div class="modal-body">...</div>
+										<div class="modal-body"></div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-secondary"
 												data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save
-												changes</button>
 										</div>
 									</div>
 								</div>
-							</div> ${allAttendanceList[status.index].getReason()}</td>
+							</div></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -145,7 +144,7 @@
 		</table>
 
 	</div>
-
+	
 
 </body>
 </html>

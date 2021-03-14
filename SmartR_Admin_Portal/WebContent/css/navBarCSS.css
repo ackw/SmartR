@@ -20,6 +20,7 @@ nav {
 	background-color: #203864;
 	overflow-x: hidden;
 	padding-top: 20px;
+	box-shadow: 5px 0px 20px 0 rgba(172, 168, 168, 1);
 }
 
 nav ul {

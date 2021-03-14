@@ -29,7 +29,6 @@ public class AttendanceDaoImpl {
 				attendanceObj.setTime_check_out(rs.getString("time_check_out"));
 				attendanceObj.setDate(rs.getString("date"));
 				attendanceObj.setIs_late(rs.getBoolean("is_late"));
-				attendanceObj.setReason(rs.getString("reason"));
 				allAttendanceList.add(attendanceObj);
 			}
 			rs.close();
@@ -90,7 +89,6 @@ public class AttendanceDaoImpl {
 				attendanceObj.setTime_check_out(rs.getString("time_check_out"));
 				attendanceObj.setDate(rs.getString("date"));
 				attendanceObj.setIs_late(rs.getBoolean("is_late"));
-				attendanceObj.setReason(rs.getString("reason"));
 				allAttendanceList.add(attendanceObj);
 			}
 			rs.close();

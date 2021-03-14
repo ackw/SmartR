@@ -1,4 +1,3 @@
-
 body {
 	font-family: "Karla", sans-serif;
 	background-color: #e2ecff;
@@ -61,13 +60,13 @@ body {
 
 .divider {
 	background-color: #e9ecef;
-    border: 1px solid #ced4da;
-    height: 45px;
-    line-height: 1.5;
-    color: #495057;
-    text-align: center;
-    align-items: center;
-    padding: .65rem .75rem;
+	border: 1px solid #ced4da;
+	height: 45px;
+	line-height: 1.5;
+	color: #495057;
+	text-align: center;
+	align-items: center;
+	padding: .65rem .75rem;
 }
 
 #leaveDuration {
@@ -77,5 +76,61 @@ body {
 #title {
 	padding: 35px;
 	color: #4472c4;
-	text-align:center;
+	text-align: center;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 70px 1fr 70px;
+  grid-template-columns: 1fr;
+  grid-template-areas: "content";
+  height: 100vh;
+}
+
+.toolbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.calendar__week,
+.calendar__header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);  
+}
+
+.calendar__week {
+  grid-auto-rows: auto;
+  text-align: right;
+}
+
+.calendar__header {
+  grid-auto-rows: 50px;
+  align-items: center;
+  text-align: center;
+}
+
+.calendar__day {
+  padding: 16px;
+}
+
+.calendar {
+  background-color: white;
+  border: 1px solid #e1e1e1;
+}
+
+.calendar__header > div {
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.calendar__day {
+  border-right: 1px solid #e1e1e1;
+  border-top: 1px solid #e1e1e1;
+}
+
+.calendar__day:last-child {
+  border-right: 0;
 }

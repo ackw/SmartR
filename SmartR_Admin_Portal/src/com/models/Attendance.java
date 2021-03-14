@@ -7,12 +7,11 @@ public class Attendance {
 	public String time_check_out;
 	public String date;
 	public boolean is_late;
-	public String reason;
 	
 	public Attendance() {}
 	
 	public Attendance(int id, String employee_id, String time_check_in, String time_check_out, String date,
-			boolean is_late, String reason) {
+			boolean is_late) {
 		super();
 		this.id = id;
 		this.employee_id = employee_id;
@@ -20,7 +19,6 @@ public class Attendance {
 		this.time_check_out = time_check_out;
 		this.date = date;
 		this.is_late = is_late;
-		this.reason = reason;
 	}
 
 	public int getId() {
@@ -69,17 +67,5 @@ public class Attendance {
 
 	public void setIs_late(boolean is_late) {
 		this.is_late = is_late;
-	}
-
-	public String getReason() {
-		return reason;
-	}
-
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
-	
-	
-	
-	
+	}	
 }

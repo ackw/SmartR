@@ -50,6 +50,7 @@ public class AttendancePageServlet extends HttpServlet {
 			employeeObj = allEmployeesMap.get(allAttendanceList.get(i).getEmployee_id());
 			employeeList.add(employeeObj);
 		}
+		
 
 		request.setAttribute("allemployeeList", allEmployeesMap);
 		request.setAttribute("allAttendanceList", allAttendanceList);

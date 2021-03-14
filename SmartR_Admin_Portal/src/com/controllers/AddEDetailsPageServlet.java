@@ -1,41 +1,89 @@
 package com.controllers;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class AddEDetailsPageServlet
- */
+import com.dao.EmployeesDaoImpl;
+import com.models.Employees;
+
 @WebServlet("/AddEDetailsPageServlet")
 public class AddEDetailsPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    
+	EmployeesDaoImpl employeesDAO = new EmployeesDaoImpl();
+	
     public AddEDetailsPageServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/addEDetailsPage.jsp");
+		rd.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		String errorMsg = "";
+		
+		String employeeID = request.getParameter("employeeID");
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		String employmentType = request.getParameter("employmentType");
+		String salary = request.getParameter("salary");
+		
+		if (employeeID == null || employeeID.isEmpty()) {
+			errorMsg += "Employee ID cannot be empty. ";
+		}
+		
+		if (name == null || employeeID.isEmpty()) {
+			errorMsg += "Name cannot be empty. ";
+		}
+		
+		if (employmentType == null) {
+			errorMsg += "Select Employment Type. ";
+		}
+		
+		try {
+		    Integer.parseInt(salary);
+		} catch (NumberFormatException e) {
+			errorMsg += "Enter numbers only for salary. ";
+		}
+
+		if (errorMsg == "") {
+			Employees employeeObj = new Employees(employeeID, name, email, employmentType, Integer.parseInt(salary));
+			
+			try {
+				boolean successful =  employeesDAO.addEmployee(employeeObj);
+				
+				if (successful == true) {
+					request.setAttribute("message", "Successfully added " + employeeID);
+					RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/addEDetailsPage.jsp");
+					rd.forward(request, response);
+				} 
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			request.setAttribute("employeeID", employeeID);
+			request.setAttribute("name", name);
+			request.setAttribute("email", email);
+			request.setAttribute("employmentType", employmentType);
+			request.setAttribute("salary", salary);
+			request.setAttribute("message2", errorMsg);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/addEDetailsPage.jsp");
+			rd.forward(request, response);
+		}
+		
+		
+		
 	}
 
 }

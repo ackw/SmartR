@@ -1,6 +1,16 @@
 body {
 	font-family: "Karla", sans-serif;
 	min-height: 100vh;
+	background-color: #FCFBFC;
+}
+
+.modal-open {
+ overflow: auto;
+ padding-right: 0px !important; 
+}
+
+.modal {
+ overflow-y: auto;
 }
 
 th {
@@ -93,8 +103,15 @@ th {
   width: 100% !important;
 }
 
-.btn-primary-outline {
+.buttom-custom {
   background-color: transparent;
-  border-color: #ccc;
+  border: none;
+  cursor:pointer;
+  outline: 0; 
 }
+
+.buttom-custom:focus {
+    outline: none;
+}
+
 
