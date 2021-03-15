@@ -17,9 +17,8 @@ public class ConfigurationDaoImpl {
         try {
             Connection con = JdbcConnection.initializeDatabase(); 
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM CONFIGURATION;");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM Operating_hours;");
 			System.out.println(rs);
-
 
             while (rs.next()) {
                 Configuration config = new Configuration();
@@ -36,7 +35,7 @@ public class ConfigurationDaoImpl {
             con.close();
         } catch (Exception e) {
             System.out.println(
-                    "Error retrieving all employees list. " + e.getMessage());
+                    "Error retrieving all operating hours list. " + e.getMessage());
         }
         return allConfigMap;
     }
@@ -47,16 +46,17 @@ public class ConfigurationDaoImpl {
             Connection con = JdbcConnection.initializeDatabase(); 
             Statement stmt = con.createStatement();
             
-            PreparedStatement st = con.prepareStatement("UPDATE CONFIGURATIONS SET Opening_hour = ?, Closing_hours = ?, Grace_period = ?, email= ?, isClosed = ? \n WHERE DAY = ?");            
+            PreparedStatement st = con.prepareStatement("UPDATE Operating_hours SET Opening_hour = ?, Closing_hours = ?, Grace_period = ?, password = ?, email= ?, isClosed = ? \n WHERE Days = Monday");            
             
             st.setString(1, config.getOpening_hours());
             st.setString(2, config.getClosing_hours()); 
             st.setString(3, config.getGrace_period());
-            st.setString(4, config.getEmail());
-            st.setString(5, config.getIsClosed());
-            st.setString(6, config.getDay());
+            st.setString(5, config.getEmail());
+            st.setString(6, config.getIsClosed());
+            //st.setString(7, config.getDay());
             //not sure if need tosave password
-            //st.setString(7, config.getPassword());
+            st.setString(4, config.getPassword());
+            System.out.println(st);
             st.executeUpdate();
             st.close();
             stmt.close();

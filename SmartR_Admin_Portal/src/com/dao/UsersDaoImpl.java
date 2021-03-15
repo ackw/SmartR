@@ -19,9 +19,12 @@ public class UsersDaoImpl {
 			Connection con = JdbcConnection.initializeDatabase(); 
 			Statement stmt = con.createStatement();
 			System.out.println("Hi1");
-			ResultSet rs = stmt.executeQuery("SELECT * FROM USERS WHERE USERNAME = 'asd';");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM USERS;");
 			System.out.println("Hi2");
 			if(rs.next()) {
+				System.out.println(rs.getString("username"));
+				System.out.println(rs.getString("password"));
+
 			if (rs.getString("username").equals(username) && rs.getString("password").equals(password)) {
 				successful = true;
 			} else {

@@ -5,6 +5,7 @@ $(document).ready(function() {
 	
 	$('#snapImage').hide();
 	$('#closeCamera').hide();
+	
 	const webcamElement = document.getElementById('webcam');
 	const canvasElement = document.getElementById('canvas');
 	const snapSoundElement = document.getElementById('snapSound');

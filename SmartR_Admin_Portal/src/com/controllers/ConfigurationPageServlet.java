@@ -51,8 +51,7 @@ public class ConfigurationPageServlet extends HttpServlet {
         String isClosed = request.getParameter("CheckBox");
         String grace_period = request.getParameter("grace_period");
         String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        
+        String password = request.getParameter("password");        
         
         if (StartTime == null || StartTime.isEmpty()) {
             errorMsg += "Start Time cannot be empty. ";

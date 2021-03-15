@@ -14,10 +14,12 @@ public class JdbcConnection {
         // Database name to access 
         String dbName = "SmartR"; 
         String dbUsername = "postgres"; 
-        String dbPassword = "winson123"; 
+        String dbPassword = "winson123";
   
         Class.forName(dbDriver); 
         Connection con = DriverManager.getConnection(dbURL + dbName, dbUsername, dbPassword); 
+		System.out.println(con);
+
         return con; 
     } 
 }
