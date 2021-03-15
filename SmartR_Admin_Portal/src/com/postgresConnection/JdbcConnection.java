@@ -10,11 +10,11 @@ public class JdbcConnection {
         // Initialize all the information regarding 
         // Database Connection 
         String dbDriver = "org.postgresql.Driver"; 
-        String dbURL = "jdbc:postgresql://127.0.0.1:5432/"; 
+        String dbURL = "jdbc:postgresql://localhost:5432/"; 
         // Database name to access 
         String dbName = "SmartR"; 
         String dbUsername = "postgres"; 
-        String dbPassword = "0000"; 
+        String dbPassword = "winson123"; 
   
         Class.forName(dbDriver); 
         Connection con = DriverManager.getConnection(dbURL + dbName, dbUsername, dbPassword); 
