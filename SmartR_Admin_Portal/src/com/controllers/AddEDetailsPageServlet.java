@@ -1,8 +1,21 @@
 package com.controllers;
 
+import java.awt.Desktop;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.channels.Channels;
+import java.nio.channels.ReadableByteChannel;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.sql.SQLException;
+import java.util.Base64;
 
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dao.EmployeesDaoImpl;
 import com.models.Employees;
+
 
 @WebServlet("/AddEDetailsPageServlet")
 public class AddEDetailsPageServlet extends HttpServlet {
@@ -37,7 +51,8 @@ public class AddEDetailsPageServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String employmentType = request.getParameter("employmentType");
 		String salary = request.getParameter("salary");
-		
+		String photoURL = request.getParameter("photoURL");
+
 		if (employeeID == null || employeeID.isEmpty()) {
 			errorMsg += "Employee ID cannot be empty. ";
 		}

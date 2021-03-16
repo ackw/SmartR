@@ -63,11 +63,16 @@
 								class="form-control" placeholder="Salary*" value="${salary}">
 						</div>
 
-						<video id="webcam" autoplay playsinline width="640" height="480"></video>
-						<canvas id="canvas" class="d-none"></canvas>
-						<audio id="snapSound" src="audio/snap.wav" preload="auto"></audio>
+						<div id="webcamdiv">
+							<video id="webcam" autoplay playsinline width="640" height="480"></video>
+							<canvas id="canvas" class="d-none"></canvas>
+							<audio id="snapSound" src="audio/snap.wav" preload="auto"></audio>
+						</div>
 
-						<div class="form-group mb-5">
+						<img id="download-photo" src="" width=640 " height="480">
+						<input id="photoURL" name="photoURL" value="" />
+						
+						<div class="form-group">
 							<input name="openCamera" id="openCamera"
 								class="btn btn-block capture-btn mb-4" type="button"
 								value="Capture Image - Open Camera">
@@ -75,20 +80,24 @@
 
 						<div class="form-group form-inline mb-5">
 							<div class="form-group">
-								<input name="" id="snapImage"
-									class="btn btn-block capture-btn mb-4" type="button"
-									value="Snap Image">
+								<input name="snapAgainImage" id="snapAgainImage" class="btn btn-block capture-btn"
+									type="button" value="Retake image">
+							</div>
+							
+							<div class="form-group">
+								<input name="snapImage" id="snapImage" class="btn btn-block capture-btn"
+									type="button" value="Snap Image">
 							</div>
 
-							<div class="form-group">
-								<input name="captureImage" id="closeCamera"
-									class="btn btn-block capture-btn mb-4" type="button"
+							<div class="form-group ml-3">
+								<input name="closeCamera" id="closeCamera"
+									class="btn btn-block capture-btn" type="button"
 									value="Close Camera">
 							</div>
 						</div>
 
 						<input name="submit" id="submit"
-							class="btn btn-block submit-btn ml-3 mb-4" type="submit"
+							class="btn btn-block submit-btn mb-4" type="submit"
 							value="Submit">
 					</form>
 				</div>

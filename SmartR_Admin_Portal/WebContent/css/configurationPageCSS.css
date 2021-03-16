@@ -81,3 +81,7 @@ body {
 	color: #4472c4;
 	text-align:center;
 }
+
+.clicked {
+	background-color: #4472c4 !important;
+}

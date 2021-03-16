@@ -1,5 +1,7 @@
 package com.models;
 
+import java.util.Date;
+
 public class Leaves {
 	public String employee_id;
 	public String start_date;
