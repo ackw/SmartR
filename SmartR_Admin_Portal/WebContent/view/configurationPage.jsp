@@ -34,12 +34,12 @@
 								<div id="monday" class="form-group form-inline mb-1">
 									<div class="input-group ml-3">
 										<input type="time" name="monStartTime" id="monStartTime"
-											value="09:30:00" class="form-control">
+											value="${allConfigList[6].getOpening_hours()}" class="form-control">
 										<div class="input-group-prepend">
 											<span class="divider">to</span>
 										</div>
 										<input type="time" name="monEndTime" id="monEndTime"
-											value="17:30:00" class="form-control">
+											value="${allConfigList[6].getClosing_hours()}" class="form-control">
 									</div>
 									<div class="form-check ml-3 mb-3">
 										<input type="checkbox" class="form-check-input"
@@ -51,12 +51,12 @@
 								<div id="tuesday" class="form-group form-inline mb-1">
 									<div class="input-group ml-3">
 										<input type="time" name="tueStartTime" id="tueStartTime"
-											value="09:30:00" class="form-control">
+											value="${allConfigList[0].getOpening_hours()}" class="form-control">
 										<div class="input-group-prepend">
 											<span class="divider">to</span>
 										</div>
 										<input type="time" name="tueEndTime" id="tueEndTime"
-											value="17:30:00" class="form-control">
+											value="${allConfigList[0].getClosing_hours()}" class="form-control">
 									</div>
 									<div class="form-check ml-3 mb-3">
 										<input type="checkbox" class="form-check-input"
@@ -68,12 +68,12 @@
 								<div id="wednesday" class="form-group form-inline mb-1">
 									<div class="input-group ml-3">
 										<input type="time" name="wedStartTime" id="wedStartTime"
-											value="09:30:00" class="form-control">
+											value="${allConfigList[1].getOpening_hours()}" class="form-control">
 										<div class="input-group-prepend">
 											<span class="divider">to</span>
 										</div>
 										<input type="time" name="wedEndTime" id="wedEndTime"
-											value="17:30:00" class="form-control">
+											value="${allConfigList[1].getClosing_hours()}" class="form-control">
 									</div>
 									<div class="form-check ml-3 mb-3">
 										<input type="checkbox" class="form-check-input"
@@ -85,12 +85,12 @@
 								<div id="thursday" class="form-group form-inline mb-1">
 									<div class="input-group ml-3">
 										<input type="time" name="thursStartTime" id="thursStartTime"
-											value="09:30:00" class="form-control">
+											value="${allConfigList[2].getOpening_hours()}" class="form-control">
 										<div class="input-group-prepend">
 											<span class="divider">to</span>
 										</div>
 										<input type="time" name="thursEndTime" id="thursEndTime"
-											value="17:30:00" class="form-control">
+											value="${allConfigList[2].getClosing_hours()}" class="form-control">
 									</div>
 									<div class="form-check ml-3 mb-3">
 										<input type="checkbox" class="form-check-input"
@@ -102,12 +102,12 @@
 								<div id="friday" class="form-group form-inline mb-1">
 									<div class="input-group ml-3">
 										<input type="time" name="friStartTime" id="friStartTime"
-											value="09:30:00" class="form-control">
+											value="${allConfigList[3].getOpening_hours()}" class="form-control">
 										<div class="input-group-prepend">
 											<span class="divider">to</span>
 										</div>
 										<input type="time" name="friEndTime" id="friEndTime"
-											value="17:30:00" class="form-control">
+											value="${allConfigList[3].getClosing_hours()}" class="form-control">
 									</div>
 									<div class="form-check ml-3 mb-3">
 										<input type="checkbox" class="form-check-input"
@@ -119,12 +119,12 @@
 								<div id="saturday" class="form-group form-inline mb-1">
 									<div class="input-group ml-3">
 										<input type="time" name="satStartTime" id="satStartTime"
-											value="09:30:00" class="form-control">
+											value="${allConfigList[4].getOpening_hours()}" class="form-control">
 										<div class="input-group-prepend">
 											<span class="divider">to</span>
 										</div>
 										<input type="time" name="satEndTime" id="satEndTime"
-											value="17:30:00" class="form-control">
+											value="${allConfigList[4].getClosing_hours()}" class="form-control">
 									</div>
 									<div class="form-check ml-3 mb-3">
 										<input type="checkbox" class="form-check-input"
@@ -136,12 +136,12 @@
 								<div id="sunday" class="form-group form-inline mb-1">
 									<div class="input-group ml-3">
 										<input type="time" name="sunStartTime" id="sunStartTime"
-											value="09:30:00" class="form-control">
+											value="${allConfigList[5].getOpening_hours()}" class="form-control">
 										<div class="input-group-prepend">
 											<span class="divider">to</span>
 										</div>
 										<input type="time" name="sunEndTime" id="sunEndTime"
-											value="17:30:00" class="form-control">
+											value="${allConfigList[5].getClosing_hours()}" class="form-control">
 									</div>
 									<div class="form-check ml-3 mb-3">
 										<input type="checkbox" class="form-check-input"
