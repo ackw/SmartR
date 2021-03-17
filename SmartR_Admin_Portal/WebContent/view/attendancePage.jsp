@@ -15,7 +15,8 @@
 <link rel="stylesheet" href="css/attendancePageCSS.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.css" />
-
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" />
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -28,14 +29,27 @@
 <script
 	src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 <script type="text/javascript" src="js/attendancePage.js"></script>
-
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
+<script type="text/javascript" charset="utf8"
+	src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.print.min.js"></script>
 
 
 <title>Attendance Page</title>
 </head>
 <body>
 	<jsp:include page="navBar.jsp" />
-	
+
 	<div class="container">
 		<h1 id="title">Attendance List</h1>
 
@@ -78,8 +92,8 @@
 				</div>
 			</div>
 		</form>
-		<hr class="mt-3 mb-5" width="100%" color="white" size="10"> 
-		<table id="attendanceList" class="table table-striped table-bordered"
+		<hr class="mt-3 mb-5" width="100%" color="white" size="10">
+		<table id="attendanceList" class="table table-bordered"
 			style="width: 100%">
 			<thead>
 				<tr>
@@ -100,17 +114,18 @@
 						<td>${employeeList[status.index].getName()}</td>
 						<td>${employeeList[status.index].getEmployment_type()}</td>
 						<td>${allAttendanceList[status.index].getDate()}</td>
-						<td>${allAttendanceList[status.index].getTime_check_in()} HRS</td>
-						<td>${allAttendanceList[status.index].getTime_check_out()} HRS</td>
+						<td>${allAttendanceList[status.index].getTime_check_in()}</td>
+						<td>${allAttendanceList[status.index].getTime_check_out()}</td>
 						<td style="display: none;">${allAttendanceList[status.index].isIs_late()}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
 			</tfoot>
 		</table>
+		<div class="mb-5"></div>
 
 	</div>
-	
+
 
 </body>
 </html>

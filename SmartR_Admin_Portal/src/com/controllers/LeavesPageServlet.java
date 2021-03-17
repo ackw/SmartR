@@ -81,89 +81,86 @@ public class LeavesPageServlet extends HttpServlet {
 
 		// Generating calendar data for selected Month-Year
 		String selectedDate = request.getParameter("date");
+		int selectedYear = Integer.parseInt(selectedDate.split("-")[0]);
+		int selectedMonth = Integer.parseInt(selectedDate.split("-")[1]) - 1;
+		int month = selectedMonth + 1;
 
-			System.out.println(selectedDate);
-			int selectedYear = Integer.parseInt(selectedDate.split("-")[0]);
-			int selectedMonth = Integer.parseInt(selectedDate.split("-")[1]) - 1;
-			int month = selectedMonth + 1;
+		Calendar selectedPeriod = Calendar.getInstance();
+		selectedPeriod.set(Calendar.MONTH, selectedMonth);
+		selectedPeriod.set(Calendar.YEAR, selectedYear);
 
-			Calendar selectedPeriod = Calendar.getInstance();
-			selectedPeriod.set(Calendar.MONTH, selectedMonth);
-			selectedPeriod.set(Calendar.YEAR, selectedYear);
-
-			String firstDay = "";
-			String lastDay = "";
-			if (selectedPeriod.get(Calendar.MONTH) < Calendar.OCTOBER) {
-				firstDay = selectedYear + "-0" + month + "-01";
-				selectedPeriod.set(Calendar.DAY_OF_MONTH, selectedPeriod.getActualMaximum(Calendar.DAY_OF_MONTH));
-				lastDay = selectedYear + "-0" + month + "-" + selectedPeriod.get(Calendar.DAY_OF_MONTH);
-			} else {
-				firstDay = selectedPeriod + "-" + selectedPeriod + "-01";
-				selectedPeriod.set(Calendar.DAY_OF_MONTH, selectedPeriod.getActualMaximum(Calendar.DAY_OF_MONTH));
-				lastDay = selectedYear + "-" + month + "-" + selectedPeriod.get(Calendar.DAY_OF_MONTH);
-			}
-
-			calendarList = getCalendarDetails(month, selectedYear);
-
-			leavesRecord = compileAllLeavesForSelectedMonth(firstDay, lastDay, month);
-			allEmployeesMap = getAllEmployeeDetails();
-
-			request.setAttribute("allEmployeeMap", allEmployeesMap);
-			request.setAttribute("leavesRecord", leavesRecord);
-			request.setAttribute("calendarList", calendarList);
-			request.setAttribute("date", selectedDate);
-
-			// Validation for leave application form
-			String errorMsg = "";
-
-			String nameList = request.getParameter("nameList");
-			String startDate = request.getParameter("startDate");
-			String endDate = request.getParameter("endDate");
-			String reason = request.getParameter("reason");
-
-			if (nameList == null || nameList.isEmpty()) {
-				errorMsg += "Employee ID cannot be empty. ";
-			}
-
-			if (startDate == null || startDate.isEmpty()) {
-				errorMsg += "Start date cannot be empty. ";
-			}
-
-			if (endDate == null || endDate.isEmpty()) {
-				errorMsg += "Start date cannot be empty. ";
-			}
-
-			if (reason == null || reason.isEmpty()) {
-				errorMsg += "Start date cannot be empty. ";
-			}
-
-			if (errorMsg == "") {
-				String employee_id = nameList.split("-")[0];
-
-				Leaves leaveObj = new Leaves(employee_id, startDate, endDate, reason);
-				try {
-					boolean successful = leavesDAO.addLeave(leaveObj);
-
-					if (successful == true) {
-						request.setAttribute("message", "Successfully added leave for " + nameList);
-						RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/addEDetailsPage.jsp");
-						rd.forward(request, response);
-					}
-
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			} else {
-				request.setAttribute("nameList", nameList);
-				request.setAttribute("startDate", startDate);
-				request.setAttribute("endDate", endDate);
-				request.setAttribute("reason", reason);
-				request.setAttribute("message2", errorMsg);
-				RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/leavesPage.jsp");
-				rd.forward(request, response);
-			}
+		String firstDay = "";
+		String lastDay = "";
+		if (selectedPeriod.get(Calendar.MONTH) < Calendar.OCTOBER) {
+			firstDay = selectedYear + "-0" + month + "-01";
+			selectedPeriod.set(Calendar.DAY_OF_MONTH, selectedPeriod.getActualMaximum(Calendar.DAY_OF_MONTH));
+			lastDay = selectedYear + "-0" + month + "-" + selectedPeriod.get(Calendar.DAY_OF_MONTH);
+		} else {
+			firstDay = selectedPeriod + "-" + selectedPeriod + "-01";
+			selectedPeriod.set(Calendar.DAY_OF_MONTH, selectedPeriod.getActualMaximum(Calendar.DAY_OF_MONTH));
+			lastDay = selectedYear + "-" + month + "-" + selectedPeriod.get(Calendar.DAY_OF_MONTH);
 		}
-	
+
+		calendarList = getCalendarDetails(month, selectedYear);
+
+		leavesRecord = compileAllLeavesForSelectedMonth(firstDay, lastDay, month);
+		allEmployeesMap = getAllEmployeeDetails();
+
+		request.setAttribute("allEmployeeMap", allEmployeesMap);
+		request.setAttribute("leavesRecord", leavesRecord);
+		request.setAttribute("calendarList", calendarList);
+		request.setAttribute("date", selectedDate);
+
+		// Validation for leave application form
+		String errorMsg = "";
+
+		String nameList = request.getParameter("nameList");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		String reason = request.getParameter("reason");
+
+		if (nameList == null || nameList.isEmpty()) {
+			errorMsg += "Employee ID cannot be empty. ";
+		}
+
+		if (startDate == null || startDate.isEmpty()) {
+			errorMsg += "Start date cannot be empty. ";
+		}
+
+		if (endDate == null || endDate.isEmpty()) {
+			errorMsg += "Start date cannot be empty. ";
+		}
+
+		if (reason == null || reason.isEmpty()) {
+			errorMsg += "Start date cannot be empty. ";
+		}
+
+		if (errorMsg == "") {
+			String employee_id = nameList.split("-")[0];
+
+			Leaves leaveObj = new Leaves(employee_id, startDate, endDate, reason);
+			try {
+				boolean successful = leavesDAO.addLeave(leaveObj);
+
+				if (successful == true) {
+					request.setAttribute("message", "Successfully added leave for " + nameList);
+					RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/addEDetailsPage.jsp");
+					rd.forward(request, response);
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			request.setAttribute("nameList", nameList);
+			request.setAttribute("startDate", startDate);
+			request.setAttribute("endDate", endDate);
+			request.setAttribute("reason", reason);
+			request.setAttribute("message2", errorMsg);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/leavesPage.jsp");
+			rd.forward(request, response);
+		}
+	}
 
 	// to generate the calendar to display on .jsp page
 	private List<List<String>> getCalendarDetails(int month, int year) {
@@ -192,7 +189,7 @@ public class LeavesPageServlet extends HttpServlet {
 																										// week
 				calendarWeekList.add(String.valueOf(dayOfMonth));
 				dayOfMonth++;
-				
+
 				// add space for remaining days of the week
 				if (dayOfMonth > daysInMonth) {
 					calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);

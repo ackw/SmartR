@@ -1,11 +1,14 @@
 package com.models;
 
+import java.io.InputStream;
+
 public class Employees {
 	public String employee_id;
 	public String name;
 	public String email;
 	public String employment_type;
 	public int salary;
+	public InputStream bufferedImage;
 	
 	public Employees() {}
 	
@@ -56,5 +59,13 @@ public class Employees {
 
 	public void setSalary(int salary) {
 		this.salary = salary;
+	}
+
+	public InputStream getBufferedImage() {
+		return bufferedImage;
+	}
+
+	public void setBufferedImage(InputStream bufferedImage) {
+		this.bufferedImage = bufferedImage;
 	}	
 }

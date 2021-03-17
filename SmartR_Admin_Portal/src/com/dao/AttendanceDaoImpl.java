@@ -28,7 +28,7 @@ public class AttendanceDaoImpl {
 				attendanceObj.setTime_check_in(rs.getString("time_check_in"));
 				attendanceObj.setTime_check_out(rs.getString("time_check_out"));
 				attendanceObj.setDate(rs.getString("date"));
-				attendanceObj.setIs_late(rs.getBoolean("is_late"));
+				attendanceObj.setIs_late(rs.getInt("is_late"));
 				allAttendanceList.add(attendanceObj);
 			}
 			rs.close();
@@ -73,8 +73,6 @@ public class AttendanceDaoImpl {
 			query += condition + " EMPLOYEE_ID IN (SELECT EMPLOYEE_ID FROM EMPLOYEES WHERE EMPLOYMENT_TYPE = '" + employmentType + "') ";
 		}
 		
-		System.out.println(query);
-		
 		try {
 			Connection con = JdbcConnection.initializeDatabase(); 
 			
@@ -87,7 +85,7 @@ public class AttendanceDaoImpl {
 				attendanceObj.setTime_check_in(rs.getString("time_check_in"));
 				attendanceObj.setTime_check_out(rs.getString("time_check_out"));
 				attendanceObj.setDate(rs.getString("date"));
-				attendanceObj.setIs_late(rs.getBoolean("is_late"));
+				attendanceObj.setIs_late(rs.getInt("is_late"));
 				allAttendanceList.add(attendanceObj);
 			}
 			rs.close();
@@ -109,6 +107,30 @@ public class AttendanceDaoImpl {
 			PreparedStatement st = con.prepareStatement("INSERT INTO ATTENDANCE (EMPLOYEE_ID, DATE) VALUES (?, ?)");
 			st.setString(1, employee_id);
 			st.setString(2, date);
+			st.executeUpdate();
+			
+			st.close();
+			stmt.close();
+			con.close();
+			successful = true;
+		} catch (Exception e) {
+			System.out.println(
+					"Error inserting new attendance for: " + employee_id + " " + e.getMessage());
+		}
+		return successful;
+	}
+	
+	public boolean addAttendanceWithLeave(String employee_id, String date) throws SQLException {		
+		boolean successful = false;
+		try {
+			Connection con = JdbcConnection.initializeDatabase(); 
+			Statement stmt = con.createStatement();
+
+			PreparedStatement st = con.prepareStatement("INSERT INTO ATTENDANCE (EMPLOYEE_ID, DATE, TIME_CHECK_IN, TIME_CHECK_OUT) VALUES (?, ?, ?, ?)");
+			st.setString(1, employee_id);
+			st.setString(2, date);
+			st.setString(3, "Leave");
+			st.setString(4, "Leave");
 			st.executeUpdate();
 			
 			st.close();

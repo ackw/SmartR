@@ -86,8 +86,13 @@ th {
 }
 
 .late {
-	background-color: #DC143C;
+	background-color: #DC143C !important; 
 	color: #FFF;
+}
+
+.leave {
+	background-color: #d5dae2 !important; 
+	color: black;
 }
 
 .bootstrap-select .btn {

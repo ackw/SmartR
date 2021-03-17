@@ -1,17 +1,24 @@
 package com.controllers;
 
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 
 import com.dao.EmployeesDaoImpl;
 import com.models.Employees;
@@ -28,11 +35,50 @@ public class AddEDetailsPageServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Employees> allEmployees = new ArrayList<Employees>();
+		List<String> imageURLList = new ArrayList<String>();
+		
+		try {
+			allEmployees = employeesDAO.retrieveAllEmployeesDetails();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < allEmployees.size(); i++) {
+			InputStream is = allEmployees.get(i).getBufferedImage();
+			byte[] b = is.readAllBytes();
+			
+			String encoded = Base64.getEncoder().encodeToString(b);
+			imageURLList.add(encoded);
+		}
+		
+		request.setAttribute("imageURLList", imageURLList);
+		request.setAttribute("allEmployees", allEmployees);
+		
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/addEDetailsPage.jsp");
 		rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Employees> allEmployees = new ArrayList<Employees>();
+		List<String> imageURLList = new ArrayList<String>();
+		
+		try {
+			allEmployees = employeesDAO.retrieveAllEmployeesDetails();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		for (int i = 0; i < allEmployees.size(); i++) {
+			InputStream is = allEmployees.get(i).getBufferedImage();
+			byte[] b = is.readAllBytes();
+			
+			String encoded = Base64.getEncoder().encodeToString(b);
+			imageURLList.add(encoded);
+		}
+		
+		request.setAttribute("imageURLList", imageURLList);
+		request.setAttribute("allEmployees", allEmployees);
 		
 		String errorMsg = "";
 		String employeeID = request.getParameter("employeeID");

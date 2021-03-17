@@ -43,6 +43,35 @@ public class EmployeesDaoImpl {
 		return allEmployeesMap;
 	}
 	
+	public List<Employees> retrieveAllEmployeesDetails() throws SQLException {
+		List <Employees> allEmployeesList= new ArrayList<Employees>();
+		
+		try {
+			Connection con = JdbcConnection.initializeDatabase(); 
+			Statement stmt = con.createStatement();
+
+			ResultSet rs = stmt.executeQuery("SELECT * FROM EMPLOYEES;");
+
+			while (rs.next()) {
+				Employees employeesObj = new Employees();
+				employeesObj.setEmployee_id(rs.getString("employee_id"));
+				employeesObj.setName(rs.getString("name"));
+				employeesObj.setEmployment_type(rs.getString("employment_type"));
+				employeesObj.setEmail(rs.getString("email"));
+				employeesObj.setSalary(rs.getInt("salary"));
+				employeesObj.setBufferedImage(rs.getBinaryStream("image"));
+				allEmployeesList.add(employeesObj);
+			}
+			rs.close();
+			stmt.close();
+			con.close();
+		} catch (Exception e) {
+			System.out.println(
+					"Error retrieving all employees list. " + e.getMessage());
+		}
+		return allEmployeesList;
+	}
+	
 	public List<String> retrieveAllEmployeesID() throws SQLException {
 		List<String> employeeIDList = new ArrayList<String>();
 		

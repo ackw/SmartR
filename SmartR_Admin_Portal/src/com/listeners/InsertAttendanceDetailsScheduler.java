@@ -8,11 +8,13 @@ import java.util.List;
 import com.dao.AttendanceDaoImpl;
 import com.dao.ConfigurationsDaoImpl;
 import com.dao.EmployeesDaoImpl;
+import com.dao.LeavesDaoImpl;
 
 public class InsertAttendanceDetailsScheduler implements Runnable {
 	ConfigurationsDaoImpl configDAO = new ConfigurationsDaoImpl();
 	EmployeesDaoImpl employeesDAO = new EmployeesDaoImpl();
 	AttendanceDaoImpl attendanceDAO = new AttendanceDaoImpl();
+	LeavesDaoImpl leavesDAO = new LeavesDaoImpl();
 	
 	@Override
 	public void run() {
@@ -72,7 +74,12 @@ public class InsertAttendanceDetailsScheduler implements Runnable {
 			
 			for (int i = 0; i < employeeIDList.size(); i++) {
 				try {
-					attendanceDAO.addAttendance(employeeIDList.get(i), date);
+					int count = leavesDAO.checkLeaves(employeeIDList.get(i), date);
+					if (count > 0) {
+						//attendanceDAO.addAttendanceWithLeave(employeeIDList.get(i), date);
+					} else {
+						//attendanceDAO.addAttendance(employeeIDList.get(i), date);
+					}
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

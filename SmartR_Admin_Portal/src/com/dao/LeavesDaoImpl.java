@@ -65,4 +65,25 @@ public class LeavesDaoImpl {
 		}
 		return successful;
 	}
+	
+	public int checkLeaves (String employee_id, String date) throws SQLException {
+		int count = 0;
+		
+		try {
+			Connection con = JdbcConnection.initializeDatabase(); 
+			Statement stmt = con.createStatement();
+
+			ResultSet rs = stmt.executeQuery("SELECT COUNT(*) AS rowcount FROM LEAVES WHERE START_DATE <= '" + date + "' AND END_DATE >= '" + date + "' AND EMPLOYEE_ID = '" + employee_id + "';");
+			rs.next();
+			count = rs.getInt("rowcount");
+			
+			rs.close();
+			stmt.close();
+			con.close();
+		} catch (Exception e) {
+			System.out.println(
+					"Error retrieving leaves for: " + employee_id + e.getMessage());
+		}
+		return count;
+	}
 }

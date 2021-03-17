@@ -20,8 +20,8 @@ public class SmartRServletContextListener implements ServletContextListener {
 		//Initial delay: time in minutes from, current time till today's 12am
 		//run every 1440 minutes (24hours) subsequently  
 		InsertAttendanceDetailsScheduler = Executors.newSingleThreadScheduledExecutor();
-		//InsertAttendanceDetailsScheduler.scheduleAtFixedRate(new InsertAttendanceDetailsScheduler(), 0, 1440, TimeUnit.MINUTES);
-		InsertAttendanceDetailsScheduler.scheduleAtFixedRate(new InsertAttendanceDetailsScheduler(), getInitialDelayTime(), 1440, TimeUnit.MINUTES);
+		InsertAttendanceDetailsScheduler.scheduleAtFixedRate(new InsertAttendanceDetailsScheduler(), 0, 1440, TimeUnit.MINUTES);
+		//InsertAttendanceDetailsScheduler.scheduleAtFixedRate(new InsertAttendanceDetailsScheduler(), getInitialDelayTime(), 1440, TimeUnit.MINUTES);
 	}
 	
 	@Override

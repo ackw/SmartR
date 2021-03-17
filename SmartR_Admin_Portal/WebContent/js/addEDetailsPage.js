@@ -1,7 +1,10 @@
 $(document).ready(function() {
-	
 	$('#successAlert:empty').text("EMPTY").hide();
 	$('#dangerAlert:empty').text("EMPTY").hide();
+	
+	$('#employeeList').DataTable( {
+   	   
+	});
 	
 	$('#snapImage').hide();
 	$('#closeCamera').hide();
