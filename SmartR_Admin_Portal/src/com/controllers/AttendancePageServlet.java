@@ -50,7 +50,6 @@ public class AttendancePageServlet extends HttpServlet {
 			employeeObj = allEmployeesMap.get(allAttendanceList.get(i).getEmployee_id());
 			employeeList.add(employeeObj);
 		}
-		
 
 		request.setAttribute("allemployeeList", allEmployeesMap);
 		request.setAttribute("allAttendanceList", allAttendanceList);
@@ -58,6 +57,7 @@ public class AttendancePageServlet extends HttpServlet {
 
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/attendancePage.jsp");
 		rd.forward(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

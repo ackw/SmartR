@@ -15,14 +15,14 @@ public class Configurations {
 	public String friEnd;
 	public String satEnd;
 	public String sunEnd;
-	public String grace_period;
+	public int grace_period;
 	public String noti_email;
 	public String noti_pw;
 	
 	public Configurations() {}
 	public Configurations(String monStart, String tuesStart, String wedStart, String thursStart, String friStart,
 			String satStart, String sunStart, String monEnd, String tuesEnd, String wedEnd, String thursEnd,
-			String friEnd, String satEnd, String sunEnd, String grace_period, String noti_email, String noti_pw) {
+			String friEnd, String satEnd, String sunEnd, int grace_period, String noti_email, String noti_pw) {
 		this.monStart = monStart;
 		this.tuesStart = tuesStart;
 		this.wedStart = wedStart;
@@ -154,11 +154,11 @@ public class Configurations {
 		this.sunEnd = sunEnd;
 	}
 
-	public String getGrace_period() {
+	public int getGrace_period() {
 		return grace_period;
 	}
 
-	public void setGrace_period(String grace_period) {
+	public void setGrace_period(int grace_period) {
 		this.grace_period = grace_period;
 	}
 

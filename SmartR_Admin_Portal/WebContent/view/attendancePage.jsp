@@ -90,7 +90,6 @@
 					<th>Time Checked-In</th>
 					<th>Time Checked-Out</th>
 					<th style="display: none;">Is Late</th>
-					<th>Action</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -104,39 +103,6 @@
 						<td>${allAttendanceList[status.index].getTime_check_in()} HRS</td>
 						<td>${allAttendanceList[status.index].getTime_check_out()} HRS</td>
 						<td style="display: none;">${allAttendanceList[status.index].isIs_late()}</td>
-						<td>
-							<div class="dropdown">
-								<button class="buttom-custom dropdown-toggle"
-									type="button" data-toggle="dropdown">
-									Actions <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li class="dropdown-item"><a href="#" data-toggle="modal"
-										data-target="#viewReasonModal">View Reason</a></li>
-									<li class="dropdown-item"><a href="#">Edit Row</a></li>
-								</ul>
-							</div>
-
-							<div class="modal fade" id="viewReasonModal" tabindex="-1"
-								role="dialog" aria-labelledby="viewReasonModal"
-								aria-hidden="true">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLabel">Absence Reason</h5>
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-										</div>
-										<div class="modal-body"></div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary"
-												data-dismiss="modal">Close</button>
-										</div>
-									</div>
-								</div>
-							</div></td>
 					</tr>
 				</c:forEach>
 			</tbody>

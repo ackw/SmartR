@@ -8,6 +8,8 @@ $(document).ready(function() {
 	$('#sunday').hide();
 	$('#monday').show();
 	$('#monBtn').addClass("clicked");
+	$('#successAlert:empty').text("EMPTY").hide();
+	$('#dangerAlert:empty').text("EMPTY").hide();
 	
 	if ($('#monStatus').val() == "closed") {
 		console.log('asd');

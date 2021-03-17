@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.models.Attendance;
+import com.models.Employees;
 import com.postgresConnection.JdbcConnection;
 
 public class AttendanceDaoImpl {
@@ -23,7 +24,6 @@ public class AttendanceDaoImpl {
 
 			while (rs.next()) {
 				Attendance attendanceObj = new Attendance();
-				attendanceObj.setId(rs.getInt("id"));
 				attendanceObj.setEmployee_id(rs.getString("employee_id"));
 				attendanceObj.setTime_check_in(rs.getString("time_check_in"));
 				attendanceObj.setTime_check_out(rs.getString("time_check_out"));
@@ -83,7 +83,6 @@ public class AttendanceDaoImpl {
 
 			while (rs.next()) {
 				Attendance attendanceObj = new Attendance();
-				attendanceObj.setId(rs.getInt("id"));
 				attendanceObj.setEmployee_id(rs.getString("employee_id"));
 				attendanceObj.setTime_check_in(rs.getString("time_check_in"));
 				attendanceObj.setTime_check_out(rs.getString("time_check_out"));
@@ -99,5 +98,27 @@ public class AttendanceDaoImpl {
 					"Error retrieving all attendance list. " + e.getMessage());
 		}
 		return allAttendanceList;
+	}
+	
+	public boolean addAttendance(String employee_id, String date) throws SQLException {		
+		boolean successful = false;
+		try {
+			Connection con = JdbcConnection.initializeDatabase(); 
+			Statement stmt = con.createStatement();
+
+			PreparedStatement st = con.prepareStatement("INSERT INTO ATTENDANCE (EMPLOYEE_ID, DATE) VALUES (?, ?)");
+			st.setString(1, employee_id);
+			st.setString(2, date);
+			st.executeUpdate();
+			
+			st.close();
+			stmt.close();
+			con.close();
+			successful = true;
+		} catch (Exception e) {
+			System.out.println(
+					"Error inserting new attendance for: " + employee_id + " " + e.getMessage());
+		}
+		return successful;
 	}
 }

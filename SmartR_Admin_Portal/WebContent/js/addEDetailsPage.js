@@ -34,12 +34,8 @@ $(document).ready(function() {
 	
 	$('#snapImage').on('click', function(){
 		let picture = webcam.snap();
-		var a = document.createElement('a');
-        a.setAttribute('download', name + '.png');
-        a.setAttribute('href', picture);
-        a.click();
+		$('#photoURL').val(picture);
 		document.querySelector('#download-photo').src = picture;
-		$('#photoURL').val(document.getElementById("download-photo").src);
 		$('#download-photo').show();
 		$('#webcamdiv').hide();
 		$('#snapImage').hide();
@@ -57,10 +53,23 @@ $(document).ready(function() {
 		$('#closeCamera').show();
 	});	
 	
-	downloadImage = function (name, datauri) {
-        var a = document.createElement('a');
-        a.setAttribute('download', name + '.png');
-        a.setAttribute('href', datauri);
-        a.click();
-    }
+	function dataURItoBlob(dataURI) {
+		  var byteString = atob(dataURI.split(',')[1]);
+
+		  var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0]
+
+		  var ab = new ArrayBuffer(byteString.length);
+
+		  var ia = new Uint8Array(ab);
+
+		  for (var i = 0; i < byteString.length; i++) {
+		      ia[i] = byteString.charCodeAt(i);
+		  }
+
+		  var blob = new Blob([ab], {type: mimeString});
+		  console.log(blob);
+		  
+		  return blob;
+		}
+	
 });

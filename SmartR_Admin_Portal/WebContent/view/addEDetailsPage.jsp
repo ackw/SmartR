@@ -70,7 +70,7 @@
 						</div>
 
 						<img id="download-photo" src="" width=640 " height="480">
-						<input id="photoURL" name="photoURL" value="" />
+						<input type="hidden" id="photoURL" name="photoURL" value="" />
 						
 						<div class="form-group">
 							<input name="openCamera" id="openCamera"
@@ -95,7 +95,6 @@
 									value="Close Camera">
 							</div>
 						</div>
-
 						<input name="submit" id="submit"
 							class="btn btn-block submit-btn mb-4" type="submit"
 							value="Submit">

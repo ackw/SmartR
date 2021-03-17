@@ -33,20 +33,69 @@ public class ConfigurationPageServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("monStart", configObj.getMonStart());
-		request.setAttribute("tuesStart", configObj.getTuesStart());
-		request.setAttribute("wedStart", configObj.getWedStart());
-		request.setAttribute("thursStart", configObj.getThursStart());
-		request.setAttribute("friStart", configObj.getFriStart());
-		request.setAttribute("satStart", configObj.getSatStart());
-		request.setAttribute("sunStart", configObj.getSunStart());
-		request.setAttribute("monEnd", configObj.getMonEnd());
-		request.setAttribute("tuesEnd", configObj.getTuesEnd());
-		request.setAttribute("wedEnd", configObj.getWedEnd());
-		request.setAttribute("thursEnd", configObj.getThursEnd());
-		request.setAttribute("friEnd", configObj.getFriEnd());
-		request.setAttribute("satEnd", configObj.getSatEnd());
-		request.setAttribute("sunEnd", configObj.getSunEnd());
+		String monStart = configObj.getMonStart();
+		if (monStart.equals("closed")) {
+			request.setAttribute("monStatus", "closed");
+		} else {
+			request.setAttribute("monStatus", "open");
+			request.setAttribute("monStart", configObj.getMonStart());
+			request.setAttribute("monEnd", configObj.getMonEnd());
+		}
+		
+		String tuesStart = configObj.getTuesStart();
+		if (tuesStart.equals("closed")) {
+			request.setAttribute("tuesStart", "closed");
+		} else {
+			request.setAttribute("tuesStart", "open");
+			request.setAttribute("tuesStart", configObj.getTuesStart());
+			request.setAttribute("tuesEnd", configObj.getTuesEnd());
+		}
+		
+		String wedStart = configObj.getWedStart();
+		if (wedStart.equals("closed")) {
+			request.setAttribute("wedStatus", "closed");
+		} else {
+			request.setAttribute("wedStatus", "open");
+			request.setAttribute("wedStart", configObj.getWedStart());
+			request.setAttribute("wedEnd", configObj.getWedEnd());
+		}
+		
+		String thursStart = configObj.getThursStart();
+		if (thursStart.equals("closed")) {
+			request.setAttribute("thursStatus", "closed");
+		} else {
+			request.setAttribute("thursStatus", "open");
+			request.setAttribute("thursStart", configObj.getThursStart());
+			request.setAttribute("thursEnd", configObj.getThursEnd());
+		}
+		
+		String friStart = configObj.getFriStart();
+		if (friStart.equals("closed")) {
+			request.setAttribute("friStatus", "closed");
+		} else {
+			request.setAttribute("friStatus", "open");
+			request.setAttribute("friStart", configObj.getFriStart());
+			request.setAttribute("friEnd", configObj.getFriEnd());
+		}
+		
+		String satStart = configObj.getSatStart();
+		if (satStart.equals("closed")) {
+			request.setAttribute("satStatus", "closed");
+		} else {
+			request.setAttribute("satStatus", "open");
+			request.setAttribute("satStart", configObj.getSatStart());
+			request.setAttribute("satEnd", configObj.getSatEnd());
+		}
+		
+		String sunStart = configObj.getSunStart();
+		if (sunStart.equals("closed")) {
+			request.setAttribute("sunStatus", "closed");
+		} else {
+			request.setAttribute("sunStatus", "open");
+			request.setAttribute("sunStart", configObj.getSunStart());
+			request.setAttribute("sunEnd", configObj.getSunEnd());
+		}
+		
 		request.setAttribute("gracePeriod", configObj.getGrace_period());
 		request.setAttribute("notiEmail", configObj.getNoti_email());
 		request.setAttribute("notiPW", configObj.getNoti_pw());
@@ -173,12 +222,85 @@ public class ConfigurationPageServlet extends HttpServlet {
 		}
 		
 		String gracePeriod = request.getParameter("gracePeriod");
-		String notiEmail = request.getParameter("emailNoti");
-		String notiPW = request.getParameter("notiPW");
-		configObj.setGrace_period(gracePeriod);
-		configObj.setNoti_email(notiEmail);
-		configObj.setNoti_pw(notiPW);
+		if (gracePeriod == null) {
+			errorMsg += "Please input grace period value.";
+		} else {
+			configObj.setGrace_period(Integer.parseInt(gracePeriod));
+		}
 		
+		String notiEmail = request.getParameter("notiEmail");
+		if (notiEmail == null) {
+			errorMsg += "Please input notification email address. ";
+		} else {
+			configObj.setNoti_email(notiEmail);
+		}
+		
+		String notiPW = request.getParameter("notiPW");
+		if (notiPW == null) {
+			errorMsg += "Please input notification email password. ";
+		} else {
+			configObj.setNoti_pw(notiPW);
+		}
+		
+		if (errorMsg == "") {			
+			try {
+				boolean successful =  configDAO.editConfig(configObj);
+				
+				if (successful == true) {
+					Configurations newConfigObj = new Configurations();
+					try {
+						newConfigObj = configDAO.getConfig();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+					
+					request.setAttribute("monStart", newConfigObj.getMonStart());
+					request.setAttribute("tuesStart", newConfigObj.getTuesStart());
+					request.setAttribute("wedStart", newConfigObj.getWedStart());
+					request.setAttribute("thursStart", newConfigObj.getThursStart());
+					request.setAttribute("friStart", newConfigObj.getFriStart());
+					request.setAttribute("satStart", newConfigObj.getSatStart());
+					request.setAttribute("sunStart", newConfigObj.getSunStart());
+					request.setAttribute("monEnd", newConfigObj.getMonEnd());
+					request.setAttribute("tuesEnd", newConfigObj.getTuesEnd());
+					request.setAttribute("wedEnd", newConfigObj.getWedEnd());
+					request.setAttribute("thursEnd", newConfigObj.getThursEnd());
+					request.setAttribute("friEnd", newConfigObj.getFriEnd());
+					request.setAttribute("satEnd", newConfigObj.getSatEnd());
+					request.setAttribute("sunEnd", newConfigObj.getSunEnd());
+					request.setAttribute("gracePeriod", newConfigObj.getGrace_period());
+					request.setAttribute("notiEmail", newConfigObj.getNoti_email());
+					request.setAttribute("notiPW", newConfigObj.getNoti_pw());
+					request.setAttribute("message", "Successfully updated configurations");
+					RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/configurationPage.jsp");
+					rd.forward(request, response);
+				} 
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			request.setAttribute("monStart", monStart);
+			request.setAttribute("tuesStart", tuesStart);
+			request.setAttribute("wedStart", wedStart);
+			request.setAttribute("thursStart", thursStart);
+			request.setAttribute("friStart", friStart);
+			request.setAttribute("satStart", satStart);
+			request.setAttribute("sunStart", sunStart);
+			request.setAttribute("monEnd", monEnd);
+			request.setAttribute("tuesEnd", tuesEnd);
+			request.setAttribute("wedEnd", wedEnd);
+			request.setAttribute("thursEnd", thursEnd);
+			request.setAttribute("friEnd", friEnd);
+			request.setAttribute("satEnd", satEnd);
+			request.setAttribute("sunEnd", sunEnd);
+			request.setAttribute("gracePeriod", gracePeriod);
+			request.setAttribute("notiEmail", notiEmail);
+			request.setAttribute("notiPW", notiPW);
+			request.setAttribute("message2", errorMsg);
+			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/configurationPage.jsp");
+			rd.forward(request, response);
+		}	
 	}
 
 }

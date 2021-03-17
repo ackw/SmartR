@@ -1,21 +1,11 @@
 package com.controllers;
 
-import java.awt.Desktop;
-import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.nio.channels.Channels;
-import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.Base64;
 
-import javax.imageio.ImageIO;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,15 +35,14 @@ public class AddEDetailsPageServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String errorMsg = "";
-		
 		String employeeID = request.getParameter("employeeID");
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String employmentType = request.getParameter("employmentType");
 		String salary = request.getParameter("salary");
 		String photoURL = request.getParameter("photoURL");
-
-		if (employeeID == null || employeeID.isEmpty()) {
+		
+		if (employeeID == null || employeeID.isEmpty()) {	
 			errorMsg += "Employee ID cannot be empty. ";
 		}
 		
@@ -70,19 +59,24 @@ public class AddEDetailsPageServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			errorMsg += "Enter numbers only for salary. ";
 		}
+		
+		if (photoURL.length() == 0) {
+			errorMsg += "Please capture an image of the employee. ";
+		}
 
 		if (errorMsg == "") {
+			byte[] imagedata = Base64.getDecoder().decode(photoURL.substring(photoURL.indexOf(",") + 1));
+			InputStream is = new ByteArrayInputStream(imagedata);
 			Employees employeeObj = new Employees(employeeID, name, email, employmentType, Integer.parseInt(salary));
 			
 			try {
-				boolean successful =  employeesDAO.addEmployee(employeeObj);
+				boolean successful =  employeesDAO.addEmployee(employeeObj, is);
 				
 				if (successful == true) {
 					request.setAttribute("message", "Successfully added " + employeeID);
 					RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/addEDetailsPage.jsp");
 					rd.forward(request, response);
 				} 
-
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -96,9 +90,5 @@ public class AddEDetailsPageServlet extends HttpServlet {
 			RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/addEDetailsPage.jsp");
 			rd.forward(request, response);
 		}
-		
-		
-		
 	}
-
 }

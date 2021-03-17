@@ -1,7 +1,6 @@
 package com.models;
 
 public class Attendance {
-	public int id;
 	public String employee_id;
 	public String time_check_in;
 	public String time_check_out;
@@ -10,23 +9,14 @@ public class Attendance {
 	
 	public Attendance() {}
 	
-	public Attendance(int id, String employee_id, String time_check_in, String time_check_out, String date,
+	public Attendance(String employee_id, String time_check_in, String time_check_out, String date,
 			boolean is_late) {
 		super();
-		this.id = id;
 		this.employee_id = employee_id;
 		this.time_check_in = time_check_in;
 		this.time_check_out = time_check_out;
 		this.date = date;
 		this.is_late = is_late;
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getEmployee_id() {

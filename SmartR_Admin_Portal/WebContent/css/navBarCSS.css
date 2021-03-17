@@ -72,3 +72,15 @@ nav ul li ul li a:hover {
    margin-top: 40px;
    margin-right: 20px;
 }
+
+.buttom-custom {
+  background-color: transparent;
+  border: none;
+  cursor:pointer;
+  outline: 0; 
+  font-size: 15px;
+}
+
+.buttom-custom:focus {
+    outline: none;
+}

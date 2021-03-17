@@ -29,16 +29,6 @@ public class LoginPageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// forces caches to obtain a new copy of the page from the server
-		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-
-		// directs caches not to store the page under any circumstance
-		// causes the proxy cache to see the page as "stale"
-		response.setDateHeader("Expires", 0);
-
-		// http backward Compatibility
-		response.setHeader("Pragma", "no-cache");
-
 		RequestDispatcher rd = getServletContext().getRequestDispatcher("/view/loginPage.jsp");
 		rd.forward(request, response);
 	}
@@ -53,7 +43,7 @@ public class LoginPageServlet extends HttpServlet {
 			// check if username and password entered is correct
 			UsersDaoImpl userDAO = new UsersDaoImpl();
 			boolean successful = userDAO.login(user.getUsername(), user.getPassword());
-			System.out.println(successful);
+
 			if (successful == true) {
 				// set current session to logged in user
 				HttpSession session = request.getSession(true);

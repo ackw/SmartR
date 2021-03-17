@@ -27,6 +27,8 @@
 				<h1 id="title">Edit Configuration</h1>
 				<div class="col-md-12">
 					<div class="card-body">
+					<div id="successAlert" class="alert alert-success" role="alert">${message}</div>
+					<div id="dangerAlert" class="alert alert-danger" role="alert">${message2}</div>
 						<form action="ConfigurationPageServlet" method="post">
 							<div class="form-group">
 								<p>Operating Hours:</p>
@@ -44,7 +46,7 @@
 										<input type="checkbox" class="form-check-input"
 											id="monCheckBox"> <label class="form-check-label"
 											for="monCheckBox">Closed</label>
-											<input type="hidden" id="monStatus" name="monStatus" value="${tuesStatus}" />
+											<input type="hidden" id="monStatus" name="monStatus" value="${monStatus}" />
 									</div>
 								</div>
 

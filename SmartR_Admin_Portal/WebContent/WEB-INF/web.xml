@@ -1,16 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>SmartR Admin Portal</display-name>
-  <welcome-file-list>
-    <welcome-file>LoginPageServlet</welcome-file>
-  </welcome-file-list>
-  <servlet>
-    <servlet-name>AttendancePageServlet</servlet-name>
-    <servlet-class>com.controllers.AttendancePageServlet</servlet-class>
-</servlet>
-<servlet-mapping>
-    <servlet-name>AttendancePageServlet</servlet-name>
-    <url-pattern>/AttendancePage</url-pattern>
-</servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>SmartR Admin Portal</display-name>
+	<welcome-file-list>
+		<welcome-file>LoginPageServlet</welcome-file>
+	</welcome-file-list>
+		<servlet>
+		<servlet-name>LoginPageServlet</servlet-name>
+		<servlet-class>com.controllers.LoginPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginPageServlet</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AttendancePageServlet</servlet-name>
+		<servlet-class>com.controllers.AttendancePageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AttendancePageServlet</servlet-name>
+		<url-pattern>/AttendancePage</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>LeavesPageServlet</servlet-name>
+		<servlet-class>com.controllers.LeavesPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LeavesPageServlet</servlet-name>
+		<url-pattern>/LeavesPage</url-pattern>
+	</servlet-mapping>
+		<servlet>
+		<servlet-name>AddEDetailsPageServlet</servlet-name>
+		<servlet-class>com.controllers.AddEDetailsPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AddEDetailsPageServlet</servlet-name>
+		<url-pattern>/EmployeeDetailsPage</url-pattern>
+	</servlet-mapping>
+			<servlet>
+		<servlet-name>ConfigurationPageServlet</servlet-name>
+		<servlet-class>com.controllers.ConfigurationPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ConfigurationPageServlet</servlet-name>
+		<url-pattern>/ConfigrationsPage</url-pattern>
+	</servlet-mapping>
+	
+  <filter>
+    <filter-name>RestrictServletsFilter</filter-name>
+    <filter-class>com.filter.RestrictServletsFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>RestrictServletsFilter</filter-name>
+    <url-pattern>/Login</url-pattern>
+     <url-pattern>/EmployeeDetailsPage</url-pattern>
+      <url-pattern>/ConfigrationsPage</url-pattern>
+       <url-pattern>/AttendancePage</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>
+  		com.listeners.SmartRServletContextListener
+ 	 </listener-class>
+  </listener>
 </web-app>
 
